@@ -28,10 +28,30 @@ function App() {
   };
 
   if (loggedIn) {
+    const handleLogout = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/logout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+  
+        const data = await response.json();
+        if (response.ok) {
+          setLoggedIn(false); // Cierra sesión
+        } else {
+          setMessage(data.message); // Muestra mensaje de error si falla
+        }
+      } catch (error) {
+        setMessage("Error al cerrar sesión");
+      }
+    };
+  
     return (
       <div className="App">
         <h1>¡Bienvenido!</h1>
         <p>Has iniciado sesión correctamente.</p>
+        <button className="submit_button" onClick={handleLogout}>Logout</button>
+        <p style={{ color: "red" }}>{message}</p>
       </div>
     );
   }
