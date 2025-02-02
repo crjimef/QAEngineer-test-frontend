@@ -21,6 +21,8 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+e2e-coverage
+.nyc_output
 *.lcov
 
 # nyc test coverage
@@ -128,3 +130,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+package-lock.json

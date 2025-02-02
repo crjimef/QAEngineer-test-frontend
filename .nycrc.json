@@ -1,0 +1,37 @@
+{
+    "all": true,
+    "check-coverage": true,
+    "instrument": false,
+    "report-dir": "e2e-coverage",
+    "reporter": [
+        "json",
+        "lcov",
+        "json-summary"
+    ],
+    "include": [
+        "src/*.jsx"
+    ],
+    "exclude": [
+        "cypress/**/*.*",
+        "**/*.d.ts",
+        "**/*.cy.jsx",
+        "**/*.cy.ts",
+        "./coverage/**",
+        "./cypress/**",
+        "./dist/**",
+        "**/*.cy.ts",
+        "./lighthouse/**",
+        "./e2e-coverage/**",
+        "./unit-coverage/**",
+        "./src/environments/**",
+        "**/*@globalwebindex/**",
+        "./config/jest/**",
+        "./public/vendor/**",
+        "./scripts/**",
+        "node_modules"
+    ],
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0
+}

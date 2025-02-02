@@ -2,15 +2,21 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview",
-    "cy:open-e2e": "cypress open --e2e --browser chrome",
-    "cy:open-unit": "cypress open --component --browser chrome",
-    "cy:run-e2e": "cypress run --e2e",
-    "cy:run-unit": "cypress run --component",
-    "cy:e2e": "start-server-and-test start http-get://localhost:5173 cy:open-e2e"
+    "test": "jest --coverage=true --outputFile=reports/junit-reporter.xml",
+    "sonar": "sonar-scanner",
+    "cy:open": "cypress open",
+    "cy:test": "cypress run",
+    "clean:cov": "rmdir /s /q coverage .nyc_output",
+    "test:ci": "start-server-and-test start http-get://localhost:5173/ cy:test",
+    "cov:merge": "istanbul-merge --out coverage/total/coverage.json coverage/coverage-final.json coverage/cypress/coverage-final.json",
+    "report:cov": "nyc report --reporter cobertura --reporter html --reporter text --reporter lcov -t coverage/total --report-dir reports/coverage",
+    "test:all": "npm run clean:cov && npm run test && npm run test:ci && npm run cov:merge && npm run report:cov"
   },
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
@@ -20,6 +26,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.13.11",
     "@eslint/js": "^9.17.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
@@ -29,8 +36,12 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "istanbul": "^0.4.5",
+    "istanbul-merge": "^2.0.0",
+    "nyc": "^17.1.0",
     "start-server-and-test": "^2.0.10",
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "vite-plugin-istanbul": "^6.0.2"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
