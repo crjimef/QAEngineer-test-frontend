@@ -12,7 +12,7 @@ Feature: User Login
     Given the user is on the login page
     When the user enters an incorrect email or password
     And clicks the "Login" button
-    Then the system should display an error message saying "Incorrect credentials"
+    Then the system should display an error message saying "Invalid credentials"
 
   Scenario: Failed login due to both fields being empty
     Given the user is on the login page

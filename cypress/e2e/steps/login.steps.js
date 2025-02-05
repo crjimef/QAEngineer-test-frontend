@@ -67,10 +67,12 @@ Given("the server's {string} endpoint is down", (endpoint) => {
 // Interceptar solo las peticiones que sí deben enviarse al servidor
 beforeEach(() => {
   cy.intercept('POST', '/login', (req) => {
-    if (req.body.email === 'test@example.com' && req.body.password === '1234') {
-      req.reply({ statusCode: 200, body: { token: "fake-token", user: { email: "test@example.com", name: "Test User" } } });
-    } else {
-      req.reply({ statusCode: 401, body: { message: "Incorrect credentials" } });
-    }
+    if(Cypress.env("CYTYPE")=="acceptance"){
+      if (req.body.email === 'test@example.com' && req.body.password === '1234') {
+        req.reply({ statusCode: 200, body: { token: "fake-token", user: { email: "test@example.com", name: "Test User" } } });
+      } else {
+        req.reply({ statusCode: 401, body: { message: "Invalid credentials" } });
+      }
+    }  
   }).as('loginRequest');
 });

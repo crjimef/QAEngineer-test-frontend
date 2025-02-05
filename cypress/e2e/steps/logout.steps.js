@@ -17,6 +17,8 @@ Then("the system should automatically redirect user to the login page", () => {
 
 beforeEach(() => {
     cy.intercept('POST', '/logout', (req) => {
-        req.reply({ statusCode: 200, body: { fixture: 'successfulLogout.json' } });
+        if(Cypress.env("CYTYPE")=="acceptance"){
+            req.reply({ statusCode: 200, body: { fixture: 'successfulLogout.json' } });
+        }     
     }).as('logoutRequest');
 });
