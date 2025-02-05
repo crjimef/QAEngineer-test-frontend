@@ -6,7 +6,7 @@ import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esb
 
 export default defineConfig({
   e2e: {
-    video: true,   // This enables video recording
+    video: false,   // This enables video recording
     videosFolder: "cypress/videos", // Folder where videos will be saved
     videoCompression: 32, // Compression level (0 for no compression)
     baseUrl: "http://localhost:5173",
