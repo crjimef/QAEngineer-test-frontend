@@ -17,5 +17,6 @@
 import './commands.js';
 
 import { mount } from 'cypress/react';
+import 'cypress-mochawesome-reporter/register';
 
 Cypress.Commands.add('mount', mount);

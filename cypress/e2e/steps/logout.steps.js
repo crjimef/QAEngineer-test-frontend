@@ -1,3 +1,4 @@
+import 'cypress-mochawesome-reporter/cucumberSupport';
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 Given("the user is authenticated and on wellcome page", function () {
